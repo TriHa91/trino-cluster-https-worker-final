@@ -1,0 +1,23 @@
+services:
+  trino:
+    env_file: "./trino.env"
+    hostname: trino-worker
+    #ports:
+      #- "9080:8080"
+      #- "9043:8443"
+    image: "trinodb/trino:472"
+    container_name: trino_worker
+    networks:
+     #- network_test
+      network_test:
+        ipv4_address: 172.18.0.4
+    restart: unless-stopped
+    volumes:
+      - ./etc:/etc/trino
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
+        - "trino-coordinator:10.0.0.14"
+networks:
+  network_test:
+    name: network_test
+    external: true
