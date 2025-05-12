@@ -15,6 +15,8 @@ services:
     restart: unless-stopped
     volumes:
       - ./etc:/etc/trino
+      - /home/trihn1/trino-cluster-https-worker-final/etc/catalog:/etc/trino/catalog
+      - /home/trihn1/trino-cluster-https-worker-final/etc:/etc/trino
     extra_hosts:
         - "host.docker.internal:host-gateway"
         - "trino-coordinator:10.96.20.57"
